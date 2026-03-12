@@ -17,10 +17,10 @@
     model = "splitto";
 
     chosen {
-        // zephyr,code-partition = &code_partition;
-        // zephyr,sram = &sram0;
-        // zephyr,flash = &flash0;
-        zephyr,console = &cdc_acm_uart;
+        zephyr,code-partition = &code_partition;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        // zephyr,console = &cdc_acm_uart;
         zmk,kscan = &kscan0;
         // zmk,battery = &vbatt;
         zmk,matrix-transform = &default_transform;
@@ -49,6 +49,10 @@
 
 };
 
+&reg1 {
+    regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
+};
+
 &adc {
     status = "okay";
 };
@@ -65,10 +69,51 @@
     status = "okay";
 };
 
-&usbd {
+// &usbd {
+//     status = "okay";
+//     cdc_acm_uart: cdc_acm_uart {
+//         compatible = "zephyr,cdc-acm-uart";
+//     };
+// }
+
+zephyr_udc0: &usbd {
     status = "okay";
-    cdc_acm_uart: cdc_acm_uart {
-        compatible = "zephyr,cdc-acm-uart";
+};
+
+&flash0 {
+    /*
+     * For more information, see:
+     * http://docs.zephyrproject.org/latest/devices/dts/flash_partitions.html
+     */
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        sd_partition: partition@0 {
+            reg = <0x00000000 0x00001000>;
+        };
+
+        code_partition: partition@1000 {
+            reg = <0x00001000 0x000d3000>;
+        };
+
+        /*
+         * The flash starting at 0x000d4000 and ending at
+         * 0x000f3fff is reserved for use by the application.
+         */
+
+        /*
+         * Storage partition will be used by FCB/LittleFS/NVS
+         * if enabled.
+         */
+        storage_partition: partition@d4000 {
+            reg = <0x000d4000 0x00020000>;
+        };
+
+        boot_partition: partition@f4000 {
+            reg = <0x000f4000 0x0000c000>;
+        };
     };
 };
 
