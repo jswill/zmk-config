@@ -7,6 +7,6 @@ config BOARD_SPLITTO_LEFT
     bool "splitto_left"
     depends on SOC_NRF52840_QIAA
 
-config BOARD_splitto_RIGHT
+config BOARD_SPLITTO_RIGHT
     bool "splitto_right"
     depends on SOC_NRF52840_QIAA
