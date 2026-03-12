@@ -22,7 +22,7 @@
         zephyr,flash = &flash0;
         // zephyr,console = &cdc_acm_uart;
         zmk,kscan = &kscan0;
-        // zmk,battery = &vbatt;
+        zmk,battery = &vbatt;
         zmk,matrix-transform = &default_transform;
     };
 
@@ -40,12 +40,13 @@
         >;
     };
 
-    // vbatt: vbatt {
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
     //     compatible = "zmk,battery-voltage-divider";
     //     io-channels = <&adc 7>;
     //     output-ohms = <2000000>;
     //     full-ohms = <(806000 + 2000000)>;
-    // };
+    };
 
 };
 
