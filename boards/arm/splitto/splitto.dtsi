@@ -21,8 +21,7 @@
         zephyr,sram = &sram0;
         zephyr,flash = &flash0;
 
-        zephyr,boot-mode = &boot_retention;
-        zmk,magic-boot-mode = &adafruit_boot_retention;
+        zephyr,boot-mode = &adafruit_boot_retention;
 
         zmk,kscan = &kscan0;
         zmk,matrix-transform = &default_transform;
@@ -53,20 +52,6 @@
 
     vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
-    };
-
-    magic_mapper {
-        compatible = "zmk,bootmode-to-magic-mapper";
-        status = "okay";
-
-        #address-cells = <1>;
-        #size-cells = <1>;
-
-        boot_retention: retention@0 {
-            compatible = "zephyr,retention";
-            status = "okay";
-            reg = <0x0 0x1>;
-        };
     };
 
 };
