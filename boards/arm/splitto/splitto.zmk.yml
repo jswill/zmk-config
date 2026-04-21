@@ -7,7 +7,6 @@ arch: arm
 features:
   - keys
   - underglow
-  - backlight
 outputs:
   - usb
   - ble
