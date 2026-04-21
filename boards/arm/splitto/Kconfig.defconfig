@@ -2,7 +2,7 @@ if BOARD_SPLITTO_LEFT
 
 # Name must be less than 16 characters long!
 config ZMK_KEYBOARD_NAME
-    default "Splitto Keyb"
+    default "Splitto kb"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
@@ -27,9 +27,6 @@ config USB_NRFX
 
 config USB_DEVICE_STACK
     default y
-
-config ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE
-    default ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE_ADAFRUIT_NRF52
 
 endif # USB
 
